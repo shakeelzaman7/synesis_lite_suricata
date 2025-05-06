@@ -42,13 +42,13 @@ change_wazuh_password() {
     fi
     
     # Change the admin password
-    log_message "INFO: Changing admin password to 'Admin@123*'..."
+    
     if ! bash "$WAZUH_TOOL" -u "$ADMIN_USER" -p "$ADMIN_PASSWORD"; then
-        log_message "ERROR: Failed to change the admin password."
+
         return 1
     fi
     
-    log_message "SUCCESS: Admin password has been changed to 'Admin@123*'."
+    
     log_message "WARNING: If you're using a distributed environment, remember to update the password in other components (Wazuh dashboard, Filebeat nodes, etc.)."
     
     return 0
@@ -701,9 +701,6 @@ EOF
     log_message "INFO: Installation summary saved to ~/security_stack_install_info.txt"
     
     log_message "INFO: Access the Wazuh dashboard at: https://${SERVER_IP}"
-    log_message "INFO: Username: admin"
-    log_message "INFO: Password: Admin@123*"
-    
 
     log_message "INFO: To add agents to this Wazuh manager:"
     log_message "INFO: 1. On the Wazuh dashboard, go to Agents > Deploy new agent"

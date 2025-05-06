@@ -16,16 +16,41 @@
 #------------------------------------------------------------------------------
 
 filebeat.inputs:
-- type: log
-  enabled: true
-  paths:
-    - /var/log/suricata/eve.json
 
-  fields:
-    event.type: suricata
+  - type: log
+
+    enabled: true
+
+    paths:
+
+      - /var/log/suricata/eve.json
+
+    fields:
+
+      event.type: suricata
+ 
+# Output to Logstash
 
 output.logstash:
+
   hosts: ["127.0.0.1:5044"]
+
   #ssl.certificate_authorities: ["/etc/pki/root/ca.pem"]
+
   #ssl.certificate: "/etc/pki/client/cert.pem"
+
   #ssl.key: "/etc/pki/client/cert.key"
+ 
+# Seccomp configuration
+
+seccomp.enabled: false
+ 
+# These paths are passed via CLI but added here as documentation reference
+
+# path.data: /var/lib/filebeat-suricata
+
+# path.logs: /var/log/filebeat-suricata
+
+# path.home: /usr/share/filebeat-suricata
+ 
+ 
